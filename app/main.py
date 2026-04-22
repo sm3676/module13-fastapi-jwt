@@ -1,40 +1,29 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.db.database import Base, engine
-from app.routes import user, calculation
-from app.models import user as user_model, calculation as calc_model
-
-app = FastAPI()
-
-# create tables
-Base.metadata.create_all(bind=engine)
-
-# include routes
-app.include_router(user.router)
-app.include_router(calculation.router)
-
-from fastapi import FastAPI
-
-app = FastAPI()
-
-# ROOT
-@app.get("/")
-def read_root():
-    return {"message": "Welcome to FastAPI App"}
-
-from app.routes import math
-
-app.include_router(math.router)
-
-from fastapi import FastAPI
 from app.routes import user, calculation, math
 
 app = FastAPI()
 
-# include ALL routers
-app.include_router(math.router)
+# ✅ CORS (frontend connect avadaniki)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],   # temporary open
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ✅ DB tables create
+Base.metadata.create_all(bind=engine)
+
+# ✅ Routes include
 app.include_router(user.router)
 app.include_router(calculation.router)
+app.include_router(math.router)
 
+# ✅ Root test
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to FastAPI App"}
+    return {"message": "SHARVANI APP WORKING"}
