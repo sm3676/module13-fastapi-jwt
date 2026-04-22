@@ -1,111 +1,97 @@
-# Backend Assignment (FastAPI + SQLAlchemy)
+# Module 13: FastAPI JWT Authentication
 
-## 🚀 Overview
-This project is a backend application built using **FastAPI**.  
-It provides:
-- User Registration & Login
-- Calculation CRUD (Create, Read, Update, Delete)
-- SQLite database using SQLAlchemy
-- API documentation via Swagger UI
+## 📌 Overview
+This project implements JWT-based authentication using FastAPI.  
+Users can register, login, and receive a JWT token for authentication.
+
+---
+
+## 🚀 Features
+
+- User Registration (/users/register)
+- User Login (/users/login)
+- Password hashing (secure)
+- JWT token generation
+- Frontend pages (Register & Login)
+- Automated testing using pytest
+- CI/CD using GitHub Actions
+- Docker support
 
 ---
 
 ## 🛠️ Tech Stack
+
 - FastAPI
-- SQLAlchemy
 - SQLite
+- SQLAlchemy
 - Pydantic
+- JWT (python-jose)
+- Passlib (password hashing)
 - Pytest
 - Docker
 
 ---
 
-## 📁 Project Structure
+## ▶️ How to Run
 
-backend-assignment/
-│
-├── app/
-│ ├── main.py
-│ ├── db/
-│ ├── models/
-│ ├── schemas/
-│ ├── routes/
-│ └── auth/
-│
-├── tests/
-├── requirements.txt
-├── Dockerfile
-└── README.md
+### 1. Clone repo
 
-
----
-
-## ⚙️ Installation & Run (Local)
-
-### 1. Install dependencies
 ```bash
+git clone https://github.com/sm3676/module13-fastapi-jwt
+cd module13-fastapi-jwt
+
+
+2. Install dependencies
+
 pip install -r requirements.txt
 
-**### 2. Run The Server**
+3. Run backend
 
 uvicorn app.main:app --reload
+Open:
+http://127.0.0.1:8000/docs
 
-**### 3. open AI docs**
+4. Run frontend
 
-http://localhost:8000/docs
+python -m http.server 5500
+
+Open:
+
+http://localhost:5500/register.html
+http://localhost:5500/login.html
 
 
-**🐳 Run with Docker
-1. Build Docker image**
-
-docker build -t backend-app .
-**
-2. Run container**
-
-docker run -p 8000:8000 backend-app
-
-**3. Access API**
-
-http://localhost:8000/docs
-
-**🧪 Running Tests**
+5. Run tests
 
 pytest
 
-**📌 API Endpoints**
-Users
-POST /users/register → Register user
-POST /users/login → Login user
-Calculations
-GET /calculations/ → Get all calculations
-POST /calculations/ → Create calculation
-GET /calculations/{id} → Get one
-PUT /calculations/{id} → Update
-DELETE /calculations/{id} → Delete
+🧪 Testing
+Register test (dynamic email)
+Login test (after register)
+Calculation tests
 
-pull docker image
-docker pull sm3676/backend-app
-docker run -p 8000:8000 sm3676/backend-app
+All tests pass successfully in GitHub Actions.
 
+🐳 Docker
 
-**👩‍💻 Author**
+Build image:
 
-Sharvani Rao
+docker build -t module13-app .
+
+Run container:
+
+docker run -p 8000:8000 module13-app
 
 
+🔐 Security
+Passwords hashed using Passlib
+JWT tokens used for authentication
+Duplicate user prevention
 
+👩‍💻 Author
 
-
-
-
-
-
+Sharvani Rao Mucharla
 
 
 
-
-
-
-
-
-
+2. Install dependencies
