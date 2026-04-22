@@ -29,5 +29,4 @@ def test_login():
         "email": email,
         "password": "123456"
     })
-
     assert response.status_code == 200
